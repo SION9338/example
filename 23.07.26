@@ -1,0 +1,167 @@
+[조건문+함수]
+세개의 Int a,b,c가 주어졌을 때 두번째로 큰 수를 Int로 반환하는 함수
+ex) 12, 51, 3 -> 12
+
+fun main(){
+    val a = 1
+    val b = 2
+    val c = 3
+    
+    val secondLargest = findSecondLargest(a, b, c)
+    println("$secondLargest")
+}
+
+fun findSecondLargest(a: Int, b: Int, c: Int): Int {
+    return when {
+        (a >= b && a >= c) -> if (b >= c) b else c
+        (b >= a && b >= c) -> if (a >= c) a else c
+        else -> if (a >= b) a else b
+    }
+}
+
+[리스트+반복문]
+전달받은 리스트의 전체 합 계산
+ex) listOf(100, 80, 90) -> 270
+
+fun main(){
+    val list = listOf(1,2,3,4,5)
+    val sum = calculateSum(list)
+    println("$sum")
+}
+
+fun calculateSum(list: List<Int>):Int {
+    var sum = 0
+    for (i in 1..5){
+        sum += i
+    }
+    return sum
+}
+
+[리스트+반복문]
+전달받은 리스트의 평균값 계산
+ex) listOf(100, 80, 90) -> 90
+
+fun main() {
+    val list = listOf(1, 2, 3, 4, 5)
+    val average = calculateAverage(list)
+    println("리스트의 전체 합의 평균값: $average")
+}
+
+fun calculateAverage(list: List<Int>): Double {
+    var sum = 0
+    for (num in list) {
+        sum += num
+    }
+    return sum.toDouble() / list.size
+}
+
+[map]
+국가별 수도를 관리하는 맵 구성
+ex) "대한민국" -> "서울"
+
+fun main(){
+    val capitals = mapOf(
+        "한국" to "서울",
+        "미국" to "워싱턴D.C",
+        "일본" to "도쿄",
+        "중국" to "베이징",
+        "러시아" to "모스크바"
+    )
+    printCapitals(capitals)
+}
+
+fun printCapitals(capitals:Map<String, String>){
+    for ((i,p) in capitals) {
+        println("$i 의 수도는 $p 입니다.")
+    }
+}
+
+[map]
+소문자 알파벳의 아스키코드를 관리하는 맵 구성 (아스키코드 검색)
+
+fun main(){
+    val lowalph = mapOf(
+        "a" to 97,
+"b" to 98,
+"c" to 99,
+"d" to 100,
+"e" to 101,
+"f" to 102,
+"g" to 103,
+"h" to 104,
+"i" to 105,
+"j" to 106,
+"k" to 107,
+"l" to 108,
+"m" to 109,
+"n" to 110,
+"o" to 111,
+"p" to 112,
+"q" to 113,
+"r" to 114,
+"s" to 115,
+"t" to 116,
+"u" to 117,
+"v" to 118,
+"w" to 119,
+"x" to 120,
+"y" to 121,
+"z" to 122
+    )
+    printLowalph(lowalph)
+}
+
+fun printLowalph(lowalph:Map<String, Int>){
+    for ((i,p) in lowalph) {
+        println("$i 의 아스키코드는 $p 입니다.")
+    }
+}
+
+[enum class]
+요일 enum class 구현
+
+enum class DayOfWeek{
+    SUNDAY,
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY
+}
+
+fun main(){
+    val today = DayOfWeek.WEDNESDAY
+    println("Today is ${today}")
+}
+
+[enum class + 조건문 + 함수]
+요일 enum class 구현하고 전달받은 요일의 내일을 구하는 함수
+
+enum class DayOfWeek {
+    SUNDAY,
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY;
+    fun getTomorrow():DayOfWeek {
+        return when (this) {
+            SUNDAY -> MONDAY
+            MONDAY -> TUESDAY
+            TUESDAY -> WEDNESDAY
+            WEDNESDAY -> THURSDAY
+            THURSDAY -> FRIDAY
+            FRIDAY -> SATURDAY
+            SATURDAY -> SUNDAY
+        }
+    }
+}
+
+fun main() {
+    val today = DayOfWeek.WEDNESDAY
+    val tomorrow = today.getTomorrow()
+    println(tomorrow)
+}
+
