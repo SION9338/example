@@ -1,0 +1,97 @@
+[변수]
+아래 동작 구현에 코드를 추가하여 원하는 결과물을 출력하세요.
+var first = "성"
+var second = "이름"
+/* 동작 구현 */
+----------------------------------------------------------------
+first = second = third
+
+println("결과물: $first $second") // "결과물: 이름 성"
+
+fun main() {
+    var first = "Park"
+	var second = "sion"
+    
+   	val third = first
+    	first = second
+   	second = third
+println("결과물: $first $second") // "결과물: 이름 성"
+}
+----------------------------------------------------------------
+
+[리스트 + 변수]
+아래 동작 구현에 코드를 추가하여 원하는 결과물을 출력하세요.
+val list = mutableListOf(1,2)
+/* 동작 구현 */
+println("결과물: $list") // "결과물: [2, 1]"
+
+
+//아래 동작 구현에 코드를 추가하여 원하는 결과물을 출력하세요.
+fun main(){
+	val list = mutableListOf(1,2)
+	val reverse = list[0]
+	list[0] = list[1]
+    	list[1] = reverse
+    
+    
+
+    println("결과물: $list") // "결과물: [2, 1]"
+}
+
+----------------------------------------------------------------
+[조건문 + 반복문]
+전달받은 list에서 n보다 큰 수를 리스트로 출력하세요.
+val list = listOf(5,1,7,3,8)
+val n = 6
+val newList = mutableListOf<Int>()
+/* 동작 구현 */
+println("결과물: $newList")
+
+
+//[조건문 + 반복문]
+//전달받은 list에서 n보다 큰 수를 리스트로 출력하세요.
+fun main(){
+	val list = listOf(5,1,7,3,8)
+	val n = 6
+	val newList = mutableListOf<Int>()
+
+    for (num in list){
+        if (num > n)
+       	newList.add(num)
+    }
+    
+	println("결과물: $newList")
+}
+
+----------------------------------------------------------------
+
+[함수]
+위의 3가지를 각각 함수로 구현하세요.
+
+[1]
+fun main(){
+    println(sum("박", "시온"))
+    println(sum("이", "성택"))
+}
+
+fun sum(a:String, b:String):String {
+    var result = b + a
+    return result
+}
+
+[2]
+fun main(){
+    
+    println(num(1, 2))
+    println(num(3, 4))
+    
+}
+
+fun num(a:Int, b:Int): String{
+     
+	
+
+    return "$b, $a"
+}
+
+
