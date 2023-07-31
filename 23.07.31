@@ -1,0 +1,77 @@
+[public]
+
+class Coffee {
+	public var menu: String =""
+	public var price: Int? = null 
+	fun takeout(){
+	println("주문하신 음료가 나왔습니다!")
+	}
+}
+fun main(){
+	val coffee = Coffee()
+	coffee.menu = "Americano"
+	coffee.price = 1500
+	
+    coffee.takeout()
+    
+	println("Menu: ${coffee.menu}")
+	println("Price: ${coffee.price}")
+    
+    val coffee2 = Coffee()
+    coffee2.menu = "Latte"
+    coffee2.price = 2500
+    
+    coffee2.takeout()
+    
+    println("Menu: ${coffee2.menu}")
+    println("Price: ${coffee2.price}")
+}
+
+
+[private]
+
+class Coffee {
+	private var price: Int = 0
+
+	fun setPrice(newPrice: Int){
+	price = newPrice
+	}
+
+	fun getPrice(): Int {
+	return price
+	}
+}
+
+fun main(){
+	val coffee = Coffee()
+	// coffee.price = 1500
+	coffee.setPrice(1500)
+	println("Price: ${coffee.getPrice()}")
+}
+
+
+[protected]
+
+open class Coffee {
+	protected var price: Int = 1500
+	
+	protected fun addshot(){
+		shot += 500
+	}
+}
+
+class Americano : Coffee(){
+	fun increasePrice(){
+		addshot()
+	}
+
+fun getPrice():Int {
+	return price
+	}
+}
+
+fun main(){
+	val americano = Americano()
+	americano.increasePrice()
+	println("Price: ${americano.getPrice()}")
+}
