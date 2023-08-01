@@ -1,0 +1,125 @@
+fun main(){
+    val number = 10
+    var language = "Korea"
+    val secondNumber: Int = 20
+    language = "English"
+
+    println("number: $number") // number : 10
+    println("language: $language") // language: English
+    println("secondNumber: $secondNumber") // secondNumber: 20 
+}
+
+-----------------------------------------------------------------
+
+fun main(){
+    val coffee = "americano"
+    var price = 1500
+    price = 2000
+
+    println(coffee) // americano
+    println(price) // 2000
+}
+
+-----------------------------------------------------------------
+
+fun main(){
+    val name = "sion"
+    val age = 30
+
+    println("name: $name" + " age: $age") // name: sion age: 30
+    println("name: $name") // name: sion
+    println("age: $age") // age: 30
+}
+
+-------------------------------------
+
+fun main(){
+    val str1 = "hello"
+    val str2 = "World"
+    val str3 = "hello"
+
+    println("str1 === str2: ${str1 === str2}") // false
+    println("str1 === str3: ${str1 === str3}") // true
+
+}
+
+** 
+$변수명 방식:
+
+변수 값을 간단하게 출력할 때 사용
+예를 들어, $name이나 $count와 같이 변수명 뒤에 공백이나 특수 문자가 없는 경우 사용
+
+${변수명} 방식:
+예를 들어, "Total: ${totalPrice}원"과 같이 변수명을 중괄호로 감싸서 사용
+
+---------------------------------------------
+
+
+fun main(){
+    var a = 1
+    val str1 = "a= $a"
+    val str2 = "a = ${a + 2}"
+
+    println("str1: \"$str1\", str2: \"$str2\"") // str1: "a = 1", str2: "a = 3"
+}
+
+
+---------------------------------------
+
+** null사용시 자료형에 '?'를 써줘야함.
+
+fun main(){
+    var str1 : String? = "Hello Kotlin"
+    str1 = null
+    println("str1: $str1")
+}
+
+------------------------------------
+
+fun main(args: Array<String>){
+    var str1 : String? = "Hello Kotlin"
+    str1 = null
+    println("str1: $str1 length: ${str1?.length}")
+}
+
+----------------------------------------
+**증감 연산자 
+
+fun main(){
+    var num1 = 10
+    var num2 = 20
+    val result1 = ++num1
+    val result2 = num2++
+
+    println("result1: $result1")//11
+    println("result2: $result2")//20
+    println("num1: $num1")//11
+    println("num2: $num2")//11
+    }
+--------------------------------------------------
+**비교 연산자
+
+fun main(){
+    var num1 = 10
+    var num2 = 20
+    val result1 = num1>num2
+    val result2 = num1!=num2
+
+    println("result1: $result1")//false
+    println("result2: $result2")//true
+
+    }
+
+---------------------------------------------------
+**논리 연산자
+package com.example.open4
+
+fun main(){
+    var check = (5>3) && (5>2)
+        println(check)//true
+    }
+
+
+
+
+
