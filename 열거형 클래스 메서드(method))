@@ -1,0 +1,30 @@
+enum class Direction {
+    NORTH,
+    SOUTH,
+    EAST,
+    WEST;
+
+    fun getOpposite(): Direction {
+        return when (this) {
+            NORTH -> SOUTH
+            SOUTH -> NORTH
+            EAST -> WEST
+            WEST -> EAST
+        }
+    }
+}
+
+fun main() {
+    val myDirection = Direction.NORTH
+    val oppositeDirection = myDirection.getOpposite()
+
+    println("My direction: $myDirection")
+    println("Opposite direction: $oppositeDirection")
+}
+
+//My direction: NORTH
+//Opposite direction: SOUTH
+
+
+위의 코드에서 getOpposite() 메서드를 Direction 열거형 클래스에 추가했습니다. 이 메서드는 현재 방향과 반대 방향을 반환합니다.
+위의 예시에서는 myDirection 변수를 생성하여 Direction.NORTH와 같은 열거 상수를 할당한 후, getOpposite() 메서드를 사용하여 반대 방향을 구하고 출력합니다. 
