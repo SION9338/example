@@ -1,3 +1,5 @@
+**이 글을 보기전에 10.Class부터 보는 걸 추천
+
 enum class Direction {
     NORTH,
     SOUTH,
