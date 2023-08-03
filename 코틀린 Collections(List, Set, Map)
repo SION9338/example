@@ -1,0 +1,79 @@
+immutable 변경불가능, 읽기 전용 
+mutalbe 변경 가능
+immnutablelistOf()
+mutablelistOf()
+
+
+fun main() {
+    val list = listOf(1, 2, 3)
+    println(list)
+}
+// [1, 2 ,3] *요소들이 []안에 출력됨
+
+----------------------------------------
+
+fun main() {
+    val list  = mutableListOf(1,2,3, "String")
+    list. add("wow") //list 요소에 wow를 추가
+    list. remove(2) //list 요소인 2를 삭제
+    var s = list.size // for문을 위해 사용되어 지는데...? 정확히는 모르겠음...
+    for (i in 0 until s){
+        println(list[i])
+        println("") // 빈 줄 생성용, 없으면 출력값이 붙어서 나옴...
+    }
+}
+// 1
+
+// 3
+
+// String
+
+// wow
+
+---------------------------------
+
+set은 중복 값을 저장하지 않는다.
+두 set이 동일한 크기, 동일한 요소들을 가질 경우 같은 set으로 취급한다.
+
+fun main() {
+    val set = setOf(1, 2, 3)
+    val set2 = setOf(3, 2 ,1)
+    println(set == set2)
+}
+
+//true
+
+-----------------------------
+
+맵(Map)은 Kotlin에서 사용되는 컬렉션 중 하나로, "키(Key)"와 "값(Value)"의 쌍으로 이루어진 데이터 구조입니다. 각 키는 유일하며 해당 키에 연결된 값은 중복될 수 있습니다. 맵은 특히 어떤 값을 특정 식별자나 키를 통해 저장하고 검색하는데 유용합니다. Kotlin에서는 MutableMap과 Map 두 가지 맵 타입을 제공합니다.
+
+MutableMap: 수정 가능한 맵으로, 값을 추가하거나 제거할 수 있습니다.
+Map: 읽기 전용 맵으로, 값을 추가하거나 제거할 수 없습니다.
+
+fun main() {
+    // MutableMap 생성
+    val scores = mutableMapOf("Alice" to 95, "Bob" to 80, "Charlie" to 70)
+
+    // 값 추가
+    scores["David"] = 85
+
+    // 값 변경
+    scores["Bob"] = 90
+
+    // 값 삭제
+    scores.remove("Charlie")
+
+    // 값 가져오기
+    val aliceScore = scores["Alice"]
+
+    // 맵 순회
+    for ((name, score) in scores) {
+        println("$name: $score")
+    }
+}
+
+// Alice: 95
+// Bob: 90
+// David: 85
+
+*여기서 말하는 key는 예로들어 Alice가 되는거고, value는 95를 말하는 거임.
