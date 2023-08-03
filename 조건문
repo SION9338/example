@@ -1,0 +1,12 @@
+fun main(){
+    var a = 10
+    if (a > 5){
+        println("${a}는 5보다 크다.")
+    } else if (a <5){
+        println("${a}는 5보다 작다.")
+    } else {
+        println("${a}는 5다.")
+    }
+}
+
+// 10은 5보다 크다.
