@@ -1,6 +1,15 @@
 생성자(Constructor)란 클래스를 통해 객체가 만들어질 때 기본적으로 호출되는 함수를 말합니다.
 생성자는 주(Primary)생성자와 부(Secondary)생성자로 나뉘며 필요에 따라 주 생성자 또는 부 생성자를 사용할 수 있습니다.
 
+생성자를 선언하는 위치는 다음과 같습니다.
+Class 클래스 이름 constructor(필요한 매개변수..) { //주 생성자의 위치
+ ...
+ constructor(필요한 매개변수..) { //부 생성자의 위치
+ // 프로퍼티의 초기화
+ }
+ [constructor(필요한 매개변수..) {...}] // 추가 부 생성자
+ ...
+}
 
 
 먼저 부 생성자 예제
@@ -39,6 +48,208 @@ fun main(){
 // coco.color: yellow
 // Fly wing: 2
 // Sing vol: 3
---------------------------------------
 
+이제 프로퍼티는 1번과 같이 선언하기만 하고 2번과 같이 부 생성자의 매개변수를 통해 초기화할 수 있습니다. 부 생성자를 이용하면 프로퍼티를 선언할 때 초기화해 둘 필요가 없는 것이죠.
+왜냐하면 객체를 생성할 때 생성자로부터 초깃값을 전달해 올 것이기 때문입니다. 단 constructor()블록에서 매개변수로 전달받은 name과 프로퍼티 선언의 name을 구분하기 위해 Bird 클래스를 가리키는 this 키워드를 사용해 프로퍼티를 지정하고 있습니다.
+따라서 this.name과 constructor()의 매개변수 name은 서로 다른 변수로 4번에서 객체를 초기화할 때 받아들인 인자 ("mybird", 2, "short", "blue")를 객체 내부의 프로퍼티에 할당하기 위해 사용했습니다.
+앞 코드의 흐름을 정리하자면?
+
+--------------------------------------
+class Bird {
+  → var name: String
+  ↑  var wing: Int
+  ↑  var beak: String
+  ↑  var color: String
+  ↑               ⓑ name      
+  ↑     constructor(name: String, wing: Int, beak: String, color: String){
+  ↑                   ↓
+  ↑ ⓒ   this.name = name
+         this.wing = wing
+         this.beak = beak
+         this.color = color
+    }
+...
+}
+fun main(){
+    val coco = Bird("mybird", 2, "short", "blue")
+}                     ⓐ mybird → (위에 ⓑ로 올라가세요.)
+
+
+ⓐ번에 의해 인자 ("mybird", 2, "shor", "blue")가 부 생성자로 전달됩니다. ⓑ번과 같이 부 생성자의 매개변수(name)가 ⓒ번에 나온 프로퍼티의 변수를 초기화합니다. 실제로는 메모리에 로드된 객체 coco의 멤버 프로퍼티가 초기화되는 것입니다.
+
+*** this 키워드를 사용하지 않으려면 프로퍼티와 매개변수를 구분하기 위해 다른 이름을 사용할 수 있습니다. 다른 이름을 구성할 때는 매개변수 이름 앞에 언더스코어(_)를 이용할 수 있습니다.
+...
+constructor(_name: String, _wing: Int, _beak: String, _color: String) {
+    name = _name // _를 매개변수에 사용하고 프로퍼티에 this를 생략할 수 있음.
+    wing = _wing
+    beak = _beak
+    color = _color
+}
+...
+
+부 생성자를 여러 개 포함한 클래스 사용하기
+코틀린에서는 클래스에 부 생성자를 하나 이상 포함할 수 있습니다. 이때는 클래스 내부에 constructor()함수 형태로 매개변수가 다르게 여러 번 선언할 수 있습니다.
+-------------------
+class 클래스 이름 {
+    constructor(매개변수[, 매개변수...]) {
+    //코드
+ }
+    constructor(매개변수[, 매개변수...]) {
+    //코드
+ }
+...
+}
+--------------------
+부 생성자를 여러 개 사용할 때는 매개변수를 다르게 정의해야 합니다.   
+------------------
+class Bird {
+    //프로퍼티
+    var name: String
+    var wing: Int
+    var beak: String
+    var color: String
+
+    //첫 번째 부 생성자
+ constructor(_name: String, _wing: Int, _beak: String, _color: String) {
+    name = _name
+    wing = _wing
+    beak = _beak
+    color = _color
+ }
+
+    // 두 번째 부 생성자
+    constructor(_name: String, _beak: String){
+        name = _name
+        wing = 2
+        beak = _beak
+        color = "grey"
+    }
+    ...
+}
+------------------------------------
+따라서 객체를 생성할 때 다음과 같이 해당 인자의 개수에 따라 생성자를 다르게 호출할 수 있게 됩니다.
+val bird1 = Bird("mybird", 2, "shor", "blue") // 첫 번째 부 생성자 호출
+val bird2 = Bird("mybird2", "long")
+
+같은 Bird 객체를 생성해도 4개의 인자를 첫 번째 부 생성자에 전달하며 호출하거나, 개의 인자를 두 번째 부 생성자에 전달하며 호출하는 방법을 사용했습니다.
+
+-----------------------
+주 생성자
+주 생성자는 클래스 이름과 블록 시작 부분 사이에 선언합니다.
+-------------
+....
+// 주 생성자 선언
+Class Bird constructor(_name: String, _wing: Int, _beak: String, _color: String) {
+// 프로퍼티
+var name: String = _name
+var wing: Int = _wing
+var beak: String = _beak
+var color: String = _color
+
+//메서드
+fun fly() = println(Fly wing: $wing")
+fun sing(vol: Int) = println("Sing vol: $vol")
+}
+....
+--------------
+주 생성자의 constructor 키워드는 다음과 같이 생략할 수 있습니다.
+class Bird(_name: String, _wing: Int, _beak: String, _color: String) { // constructor 생략
+...
+----------------
+
+프로퍼티를 포함한 주 생성자
+내부의 프로퍼티를 생략하고 생성자의 매개변수에 프로퍼티 표현을 함께 넣어 보겠습니다.
+val, var를 사용하여 매개변수를 선언하면 생성자에서 this키워드를 사용하거나 매개변수 이름에 언더스코어를 붙인 다음 생성자에서 인자를 할당할 필요가 없습니다.
+-----------
+Class Bird(val name: String, val wing: Int, val beak: String, var color: String){ //constructor 생략
+...
+------------
+
+주 생성자를 사용하는 새로운 예제
+-------------
+Class Bird(var name: String, var wing: Int, var beak: String, var color: String) {
+    //프로퍼티는 매개변수 안에 var를 사용해 프로퍼티로서 선언되어 본문에서 생략됨
+
+    //메서드
+    fun fly() = println("Fly wing: $wing")
+    fun sing(vol: Int) = println("Sing vol: $vol")
+}
+
+fun main(){
+    val coco = Bird("mybird", 2, "short", "blue")
+
+    coco.color = "yellow"
+    println("coco.color: ${coco.color}")
+    coco.fly()
+    coco.sing(3)
+}
+
+//coco.colr: yellow
+//Fly wing: 2
+//Sing vol: 3
+
+----------------------------
+
+초기화 블록을 가진 주 생성자
+초기화 블록을 사용하는 예제
+
+Class Bird(var name: String, var wing: Int, var beak: String, var color: String) {
+    // ⓐ 초기화 블록
+    init{
+        println("------초기화 블록 시작---------")
+        println("이름은 $name, 부리는 $beak")
+        this.sing(3)
+        println("-------초기화 블록 끝-------)
+
+    }
+    //메서드
+    fun fly() = println("Fly wing: $wing")
+    fun sing(vol: Int) = println("Sing vol: $vol")
+}
+
+fun main(){
+    val coco = Bird("mybird", , "short", "blue") //  ⓑ 객체 생성과 함께 초기화 블록 수행
+
+    coco.color = "yellow"
+    println("coco.color: ${coco.color}")
+    coco.fly()
+}
+
+//-------초기화 블록 시작---------
+이름은 mybird, 부리는 shor
+Sing vol: 3
+---------초기화 블록 끝 ----------
+coco.color: yellow
+Fly wing: 2
+
+--------------------------------
+ⓐ번 init 초기화 블록에서 name과 beak를 출력하고 sing()메서드를 사용했습니다. 
+init 초기화 블록에서는 출력문이나 프로퍼티, 메서드 등과 같은 코드를 사용할 수 있습니다. 
+초기화 블록에서 명시한 내용은 ⓑ2번에서 객체 생성과 함께 같이 실행됩니다.
+
+------------------------
+
+프로퍼티의 기본값 지정
+생성자의 매개변수에 기본값을 사용할 수 있습니다. 그러면 객체를 생성할 때 기본값이 있는 인자는 생략할 수 있습니다.
+
+
+-----------------------------------
+//프로퍼티의 기본값 지정
+class Bird(var name: String = "NONAME", var wing: Int = 2, var beak: String, var color: String){
+    ...
+}
+
+fun main(){
+    val coco = Bird(beak = "long", color = "red") // 기본값이 있는 것은 생략하고 없는 것만 전달 가능
+
+    println("coco.name: ${coco.name}, coco.wing ${coco.wing}")
+    println("coco.color: ${coco.color}, coco.beak ${coco.beak}")    
+)
+
+//coco.name: MONAME, coco.wing 2
+//coco.color: red, coco.beak long
+
+----------------------------------------
+객체 생성 과정에서 기본값이 지정된 프로퍼티인 name과 wing이 생략된 것을 알 수 있습니다.
+따라서 모든 프로퍼티를 출력하면 다음과 같이 기본적으로 값이 지정되어 있습니다.
 
