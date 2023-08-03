@@ -56,7 +56,7 @@ fun main(){
     var num1 = 10
     var num2 = 10
     val result1 = --num1 // num 값 감소 후 대입
-    val result2 = num2-- // 먼저 num값 감소 후 증가
+    val result2 = num2-- // 먼저 num값 대입 후 감소
 
     println("result1: $result1") // 9
     println("result2: $result2") // 10
@@ -122,8 +122,16 @@ fun main() {
 
 && / 논리곱으로 2개 항이 모두 true일 때, true, 아니면 false / exp1 && exp2
 
+fun main() {
+    val condition1 = true
+    val condition2 = false
+
+    val resultAnd = condition1 && condition2
+    println("Result of AND: $resultAnd") // false
+}
 -------------------------------------------------------------------------------------------
 || / 논리합으로 2개 항 중 1개 항이 true일 때 true, 아니면 false / exp1 || exp2
+
 fun main() {
     val a = true
     val b = false
@@ -133,5 +141,11 @@ fun main() {
 }
 ----------------------------------------------------------------------------------------------
 ! / 부정 연산자로 true를 false로, flase를 true로 바꿈 / !exp
--------------------------------------------------------------------------------------
 
+fun main() {
+    val condition = false
+
+    val resultNot = !condition
+    println("Result of NOT: $resultNot") // true
+}
+-------------------------------------------------------------------------------------
