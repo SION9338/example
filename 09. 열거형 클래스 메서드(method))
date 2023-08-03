@@ -1,3 +1,5 @@
+**** 이 글을 읽기전에 10.class에 대해 먼저 개념을 익혀두는게 좋을거 같음...?
+
 enum class Direction {
     NORTH,
     SOUTH,
