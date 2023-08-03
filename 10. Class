@@ -1,0 +1,101 @@
+코틀린에서 사용하는 용어 / 다른 언어세ㅓ 사용하는 용어
+클래스(Class) / 분류, 범주
+프로퍼티(Property) / 속성(Attribute), ******변수(Variable), 필드(Field), 데이터(Date)
+메서드(Method) / ******함수(Function), 동작(Operation), 행동(Behavior)
+객체(Object) / 인스턴스(Intance)
+----------------------------
+** fun main(){     *** 함수(main)
+  val name = "sion"  *** 변수(name) , 변수값: sion
+  println(name)        → Class에서 메서드, 프로퍼티와 많이 헷갈릴 수 있음.
+}
+---------------------------
+- 추상화(Abstraction): 특정 클래스를 만들 때 기본 형식을 규정하는 방법
+- 인스턴스(Instance) : 클래스로부터 생성한 객체
+- 상속(Inheritance) : 부모 클래스의 내용을 자식 클래스가 그대로 물려받음
+- 다형성(Polymorphism): 하나의 이름으로 다양한 처리를 제공
+- 캡슐화(Encapsulation): 내용을 숨기고 필요한 부분만 사용
+- 메세지 전송(Message Sending): 객체 간에 주고받는 메시지
+- 연관(Association): 클래스 간의 관계
+--------------------------------------------------------
+Bird       ← 클래스 이름
+--------------------------------------------------------
+-name: String
+-wing: Int = 2     ← 프로퍼티(속성, 변수) 
+-break: String
+-color: String
+--------------------------------------------------------
++fly(): Unit                ← 메서드(행동, 함수)
++sing(vol: Int): Unit 
+--------------------------------------------------------
+여기서 -는 private를 의미
+여기서 +는 public을 의미
+→ 나중에 접근 제한자에 대해....
+--------------------------------------------------------------------------
+
+class Bird { // 1.클래스의 정의
+    //2.프로퍼티(속성)
+    var name: String = "mybird"
+    var wing: Int = 2
+    var beak: String = "short" //beak는 부리라는 뜻임.
+    var color: String = "blue"
+
+    //3.메서드(함수)
+    fun fly() = println("Fly wing: $wing")
+    fun sing(vol:Int) = println("Sing vol: $vol")
+}
+
+fun main(){
+    val coco = Bird() //4.클래스의 생성자를 통한 객체의 생성
+    coco.color = "Blue" //5.객체의 프로퍼티에 값 할당
+
+    println("coco.color: ${coco.color}") //6. 객체의 멤버 프로퍼티 읽기
+    coco.fly() //7.객체의 멤버 메서드 사용
+    coco.sing(3)
+}
+
+//coco.color: blue
+//Fly wing: 2
+// Sing vol: 3
+
+*** 가독성을 위해 main함수는 위에서 부터 작성하는 것이 좋음... 근데 꼭 그렇지만도 않은거 같음.... 상황마다 다른듯...? *** 중요함!!  Class(클래스)는 fun(함수) 보다 더 큰 개념으로 이해하는 것이 좋을듯?
+
+------------------------------------------------------------------------
+여기서 coco.fly()와 coco.sing(3)은 println()을 사용하지 않았는데 왜 출력되는 거지?
+
+→ 코드에서 coco.fly()와 coco.sing(3)는 출력 함수 println()을 직접 사용하지 않았지만, fly()와 sing() 메서드 내부에서 println()이 호출되어 출력이 발생하는 것입니다.
+
+fly()와 sing() 메서드는 내부에서 println() 함수를 호출하고 있으므로 해당 메서드를 호출하면 메서드 내부의 println()이 실행되어 결과가 출력됩니다.
+
+여기서 coco.fly()와 coco.sing(3)가 호출되었을 때 출력되는 것은 각 메서드 내부의 println()에 의해 발생하는 것이며, main() 함수에서 coco.fly()와 coco.sing(3)를 호출했기 때문에 해당 메서드의 내용이 실행되어 출력이 발생하는 것입니다.
+-------------------------------------------------------------------
+
+→ 바로 예제에 추가해 보자... Bird 클래스에 있는 변수 'b'eak 프로퍼티를 사용하기 위해 클래스 내부에서 함수 'B'eak 메서드를 선언, main함수에서 Bird 클래스에 있는 'B'eak 행동 메서드 함수를 호출하여 출력  
+
+class Bird { // 1.클래스의 정의
+    //2.프로퍼티(속성)
+    var name: String = "mybird"
+    var wing: Int = 2
+    var beak: String = "short" //beak는 부리라는 뜻임.
+    var color: String = "blue"
+
+    //3.메서드(함수)
+    fun fly() = println("Fly wing: $wing")
+    fun sing(vol:Int) = println("Sing vol: $vol")
+    fun Beak() = println("Beak: $beak")
+}
+
+fun main(){
+    val coco = Bird() //4.클래스의 생성자를 통한 객체의 생성
+    coco.color = "Blue" //5.객체의 프로퍼티에 값 할당
+
+    println("coco.color: ${coco.color}") //6. 객체의 멤버 프로퍼티 읽기
+    coco.fly() //7.객체의 멤버 메서드 사용
+    coco.sing(3)      //*** 객체의 행동 메서드를 호출하기 위해서는 해당 객체 뒤에 점(.)을 붙이고 메서드 이름을 호출해야 합니다.
+    coco.Beak()
+}
+
+//coco.color: Blue
+//Fly wing: 2
+//Sing vol: 3
+//Beak: short
+----------------------------------------------------------------------
