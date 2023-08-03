@@ -1,0 +1,34 @@
+fun main(){
+    val dayOfWeek = 3
+
+    val dayString = when (dayOfWeek) {
+        1 -> "Mon"
+        2 -> "Tue"
+        3 -> "Wed"
+        4 -> "Thu"
+        5 -> "Fri"
+        6 -> "Sat"
+        7 -> "Sun"
+        else -> "Invalid Day!!(잘못된 날짜입니다!!)"
+    }
+    println(dayString) // Wed
+}
+
+
+------------------------------------------------------------
+
+fun main(){
+    val dayOfWeek = 8
+
+    val dayString = when (dayOfWeek) {
+        1 -> "Mon"
+        2 -> "Tue"
+        3 -> "Wed"
+        4 -> "Thu"
+        5 -> "Fri"
+        6 -> "Sat"
+        7 -> "Sun"
+        else -> "Invalid Day!!(잘못된 날짜입니다!!)"
+    }
+    println(dayString) // Invalid Day!!(잘못된 날짜입니다!!
+}
