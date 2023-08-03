@@ -1,0 +1,60 @@
+enum constant(상수)는 모두 대문자로 작성(관례임.)
+enum constant는 각각 Object(객체)임.
+
+
+enum class Color{
+RED, <- RED는 constant(상수)이고 한 Object임.
+GREEN,
+BLUE
+}
+
+----------------------------
+
+enum class Color {
+    RED,
+    GREEN,
+    BLUE,
+    YELLOW,
+    ORANGE
+}
+
+fun main() {
+    val selectedColor = Color.GREEN
+
+    when (selectedColor) {
+        Color.RED -> println("Selected color is Red")
+        Color.GREEN -> println("Selected color is Green")
+        Color.BLUE -> println("Selected color is Blue")
+        Color.YELLOW -> println("Selected color is Yellow")
+        Color.ORANGE -> println("Selected color is Orange")
+    }
+}
+
+// Selected color is Green
+-------------------------------
+
+프로퍼티(Property): 각 enum constant에 대해 값 또는 상태 지정
+** enum class 내부에서 직접 프로퍼티를 선언하고 초기화하는 것은 지원되지 않습니다. → 아래 코드처럼 enum class Color 변수 이름 옆에  변수(프로퍼티property) 선언
+
+enum class Color(val rgb: Int) {
+
+    RED(3),
+    GREEN(5),
+    BLUE(7),
+
+}
+
+fun main() {
+    val selectedColor = Color.GREEN
+
+    when (selectedColor) {
+        Color.RED -> println(Color.RED.rgb)
+        Color.GREEN -> println(Color.GREEN.rgb)
+        Color.BLUE -> println(Color.BLUE.rgb)
+
+    }
+}
+
+// 5
+
+-------------------------------
