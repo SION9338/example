@@ -36,9 +36,9 @@ fun main() {
 프로퍼티(Property): 각 enum constant에 대해 값 또는 상태 지정
 ** enum class 내부에서 직접 프로퍼티를 선언하고 초기화하는 것은 지원되지 않습니다. → 아래 코드처럼 enum class Color 변수 이름 옆에  변수(프로퍼티property) 선언
 
-enum class Color(val rgb: Int) {
+enum class Color(val rgb: Int) { // rgb → 이 녀석이 프로퍼티의 이름임.
 
-    RED(3),
+    RED(3), // → (3) 이 녀석이 프로퍼티의 값
     GREEN(5),
     BLUE(7),
 
